@@ -7,7 +7,8 @@ import { Buttons } from '../elm/Buttons.elm';
 
 class ButtonContainer extends React.Component {
   render() {
-    return <Elm src={Buttons} />
+    const flags = { count: this.props.count };
+    return <Elm src={Buttons} flags={flags}/>
   }
 }
 
