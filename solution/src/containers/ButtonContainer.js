@@ -7,9 +7,17 @@ import { Buttons } from '../elm/Buttons.elm';
 import { UPDATE_ITEM_COUNT } from "../constants/ActionTypes";
 
 class ButtonContainer extends React.Component {
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.count !== this.props.count) {
+      this.state.updateCount(this.props.count)
+    }
+  };
+
   setupPorts = (ports) => {
     ports.updateCount.subscribe((updatedCount) => { this.props.updateCount(updatedCount, this.props.keyValue)});
-    ports.countUpdated.send(42);
+    this.setState({
+        updateCount : ports.countUpdated.send
+    })
   };
 
   render() {
