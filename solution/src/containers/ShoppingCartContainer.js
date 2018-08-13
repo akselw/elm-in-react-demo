@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createStructuredSelector, createSelector } from 'reselect'
-
 import { connect } from 'react-redux'
+
+import Buttons from './ButtonContainer'
 import { ADD_ITEM } from "../constants/ActionTypes";
 
 const ShoppingCart = ({ shoppingCart, addItem}) => (
@@ -16,7 +17,7 @@ const ShoppingCart = ({ shoppingCart, addItem}) => (
 const Items = ({ items }) => (
   <ul>
     {items.map(item => (
-      <li key={item.key}>{item.name}</li>
+      <li key={item.key}>{item.name}<Buttons/></li>
     ))
     }
   </ul>
