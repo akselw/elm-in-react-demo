@@ -9,6 +9,7 @@ import { UPDATE_ITEM_COUNT } from "../constants/ActionTypes";
 class ButtonContainer extends React.Component {
   setupPorts = (ports) => {
     ports.updateCount.subscribe((updatedCount) => { this.props.updateCount(updatedCount, this.props.keyValue)});
+    ports.countUpdated.send(42);
   };
 
   render() {

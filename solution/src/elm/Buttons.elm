@@ -7,6 +7,9 @@ import Html.Events exposing (onClick)
 port updateCount : Int -> Cmd msg
 
 
+port countUpdated : (Int -> msg) -> Sub msg
+
+
 type alias Flags =
     { count : Int
     }
@@ -17,13 +20,18 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         }
 
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
     ( flags.count, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch [ countUpdated CountUpdated ]
 
 
 
@@ -41,6 +49,7 @@ type alias Model =
 type Msg
     = Increment
     | Decrement
+    | CountUpdated Int
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -51,6 +60,9 @@ update msg model =
 
         Decrement ->
             ( model, updateCount (model - 1) )
+
+        CountUpdated count ->
+            ( count, Cmd.none )
 
 
 
