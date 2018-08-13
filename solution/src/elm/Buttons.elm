@@ -1,7 +1,10 @@
-module Buttons exposing (main)
+port module Buttons exposing (main)
 
 import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick)
+
+
+port updateCount : Int -> Cmd msg
 
 
 type alias Flags =
@@ -44,10 +47,10 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Increment ->
-            ( model + 1, Cmd.none )
+            ( model, updateCount (model + 1) )
 
         Decrement ->
-            ( model - 1, Cmd.none )
+            ( model, updateCount (model - 1) )
 
 
 
