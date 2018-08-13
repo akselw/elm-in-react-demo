@@ -4,7 +4,7 @@ const initialState = {
   items: [{
       name: "Genser",
       key: "abx030",
-      count: 1
+      count: 2
   }]
 };
 
