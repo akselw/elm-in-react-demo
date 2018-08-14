@@ -31,7 +31,7 @@ init flags =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.batch [ countUpdated CountUpdated ]
+    countUpdated CountUpdated
 
 
 
