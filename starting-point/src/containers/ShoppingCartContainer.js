@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { createStructuredSelector, createSelector } from 'reselect'
 
 import { connect } from 'react-redux'
-import { ADD_ITEM } from "../constants/ActionTypes";
+import { ADD_ITEM } from '../constants/ActionTypes';
 
 const ShoppingCart = ({ shoppingCart, addItem}) => (
   <div>

@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM_COUNT } from 'constants/ActionTypes'
+import { ADD_ITEM, REMOVE_ITEM, UPDATE_ITEM_COUNT } from '../constants/ActionTypes'
 
 const initialState = {
   items: [{
