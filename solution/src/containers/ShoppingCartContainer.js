@@ -17,7 +17,7 @@ const ShoppingCart = ({ shoppingCart, addItem}) => (
 const Items = ({ items }) => (
   <ul>
     {items.map(item => (
-      <li key={item.key}>{item.name}<Buttons count={item.count} keyValue={item.key}/></li>
+      <li key={item.key}>{item.name} <Buttons count={item.count} keyValue={item.key}/></li>
     ))
     }
   </ul>

@@ -1,6 +1,7 @@
 module Buttons exposing (main)
 
 import Html exposing (Html, button, div, text)
+import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
 
@@ -46,8 +47,8 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
+    div [ class "buttons" ]
         [ button [ onClick Decrement ] [ text "-" ]
-        , div [] [ text (toString model) ]
+        , div [ class "buttons" ] [ text (toString model) ]
         , button [ onClick Increment ] [ text "+" ]
         ]

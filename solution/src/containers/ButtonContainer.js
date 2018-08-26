@@ -2,27 +2,37 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Elm from 'react-elm-components';
 import { Buttons } from '../elm/Buttons.elm';
 import { UPDATE_ITEM_COUNT } from "../constants/ActionTypes";
 
 class ButtonContainer extends React.Component {
-  componentDidUpdate = (prevProps) => {
-    if (prevProps.count !== this.props.count) {
-      this.state.updateCount(this.props.count)
+  constructor(props) {
+    super(props);
+    this.nodeRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const flags = { count: this.props.count };
+    const app = Buttons.embed(this.nodeRef.current, flags);
+    this.setupPorts(app.ports);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.count !== this.props.count) {
+      this.state.updateCount(nextProps.count)
     }
+    return false;
   };
 
-  setupPorts = (ports) => {
+  setupPorts(ports) {
     ports.updateCount.subscribe((updatedCount) => { this.props.updateCount(updatedCount, this.props.keyValue)});
     this.setState({
-        updateCount : ports.countUpdated.send
+      updateCount : ports.countUpdated.send
     })
   };
 
   render() {
-    const flags = { count: this.props.count };
-    return <Elm src={Buttons} flags={flags} ports={this.setupPorts}/>
+    return <div ref={this.nodeRef} className="buttons"/>;
   }
 }
 
